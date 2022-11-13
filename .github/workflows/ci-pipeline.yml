@@ -37,6 +37,16 @@ jobs:
         format: markdown
         output: both
         thresholds: '80'
+    - name: Create Test Coverage Badge
+      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+      id: create_coverage_badge
+      with:
+        label: Unit Test Coverage
+        color: brightgreen
+        path: coverage.cobertura.xml
+        gist-filename: code-coverage.json
+        gist-id: 9ad2229158bd5f447dc0ad93c42ae34f
+        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
     - name: Mutation Test
       run: dotnet stryker
     - name: Upload Mutation Report
