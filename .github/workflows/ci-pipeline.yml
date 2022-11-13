@@ -1,4 +1,4 @@
-name: Stryker Pipeline
+name: Build Pipeline
 
 on:
   pull_request:
