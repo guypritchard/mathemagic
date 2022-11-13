@@ -26,17 +26,9 @@ jobs:
     - name: Build
       run: dotnet build Calculator/Calculator.sln --no-restore
     - name: Unit Test
-      run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal Calculator/Calculator.sln
+      run:  dotnet test Calculator/Calculator.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=json,cobertura,lcov,teamcity,opencover
     - name: Copy Coverage to root
       run: cp Calculator/Calculator.Tests/TestResults/**/coverage.opencover.xml coverage.opencover.xml
-    - name: Code Coverage Summary
-      uses: irongut/CodeCoverageSummary@v1.2.0
-      with:
-        filename: coverage.opencover.xml
-        fail_below_min: true
-        format: markdown
-        output: both
-        thresholds: '80'
     - name: Create Test Coverage Badge
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
       id: create_coverage_badge
