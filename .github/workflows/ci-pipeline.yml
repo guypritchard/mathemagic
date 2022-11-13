@@ -53,15 +53,15 @@ jobs:
         recreate: true
         path: code-coverage-results.md
 
-      - name: Glob match
-        uses: tj-actions/glob@v10
-        id: glob
-        with:
-          files: StrykerOutput/**/reports/mutation-report.html
+    - name: Glob match
+      uses: tj-actions/glob@v10
+      id: glob
+      with:
+        files: StrykerOutput/**/reports/mutation-report.html
 
-      - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2.2.0
-        if: github.event_name == 'pull_request'
-        with:
-          recreate: true
-          path: steps.glob.outputs.paths[0]
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2.2.0
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: steps.glob.outputs.paths[0]
