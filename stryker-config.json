@@ -1,9 +1,6 @@
 {
   "stryker-config": {
-    "test-projects": [ "./Calculator/Calculator.Tests/Calculator.Tests.csproj" ],
-    "reporters": [
-      "progress",
-      "html"
-    ]
+    "test-projects": ["./Mathemagic/Mathemagic.Tests/Mathemagic.Tests.csproj"],
+    "reporters": ["progress", "html"]
   }
 }

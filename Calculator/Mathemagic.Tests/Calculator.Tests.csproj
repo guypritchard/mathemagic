@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Calculator.Core\Calculator.Core.csproj" />
+    <ProjectReference Include="..\Mathemagic.Core\Mathemagic.Core.csproj" />
   </ItemGroup>
 
 </Project>

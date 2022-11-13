@@ -2,65 +2,64 @@ name: Stryker Pipeline
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Log level'     
+        description: "Log level"
         required: true
-        default: 'warning'
+        default: "warning"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x    
-    - name: Restore tools
-      run: dotnet tool restore
-    - name: Restore dependencies
-      run: dotnet restore Calculator/Calculator.sln
-    - name: Build
-      run: dotnet build Calculator/Calculator.sln --no-restore
-    - name: Unit Test
-      run: dotnet test Calculator/Calculator.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
-    - name: Copy Coverage to root
-      run: cp Calculator/Calculator.Tests/TestResults/**/coverage.cobertura.xml coverage.cobertura.xml
-    - name: Code Coverage Summary
-      uses: irongut/CodeCoverageSummary@v1.2.0
-      with:
-        filename: coverage.cobertura.xml
-        fail_below_min: true
-        format: markdown
-        output: both
-        thresholds: '80'
-    - name: Mutation Test
-      run: dotnet stryker
-    - name: Upload Mutation Report
-      uses: actions/upload-artifact@v3.0.0
-      with:
-        name: mutation-report
-        path: StrykerOutput
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2.2.0
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: code-coverage-results.md
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Restore dependencies
+        run: dotnet restore Mathemagic/Mathemagic.sln
+      - name: Build
+        run: dotnet build Mathemagic/Mathemagic.sln --no-restore
+      - name: Unit Test
+        run: dotnet test Mathemagic/Mathemagic.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
+      - name: Copy Coverage to root
+        run: cp Mathemagic/Mathemagic.Tests/TestResults/**/coverage.cobertura.xml coverage.cobertura.xml
+      - name: Code Coverage Summary
+        uses: irongut/CodeCoverageSummary@v1.2.0
+        with:
+          filename: coverage.cobertura.xml
+          fail_below_min: true
+          format: markdown
+          output: both
+          thresholds: "80"
+      - name: Mutation Test
+        run: dotnet stryker
+      - name: Upload Mutation Report
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: mutation-report
+          path: StrykerOutput
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2.2.0
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
 
-    - name: Glob match
-      uses: tj-actions/glob@v10
-      id: glob
-      with: 
-        files: StrykerOutput/**/reports/mutation-report.html
-  
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2.2.0
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: steps.glob.outputs.paths[0]
+      - name: Glob match
+        uses: tj-actions/glob@v10
+        id: glob
+        with:
+          files: StrykerOutput/**/reports/mutation-report.html
 
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2.2.0
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: steps.glob.outputs.paths[0]

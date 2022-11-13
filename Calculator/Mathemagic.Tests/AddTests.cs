@@ -1,7 +1,7 @@
-using Calculator.Core;
+using Mathemagic.Core;
 using NUnit.Framework;
 
-namespace Calculator.Tests
+namespace Mathemagic.Tests
 {
     public class AddTests
     {

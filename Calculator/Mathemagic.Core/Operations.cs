@@ -1,4 +1,4 @@
-﻿namespace Calculator.Core
+﻿namespace Mathemagic.Core
 {
     public class Operations
     {
