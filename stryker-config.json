@@ -1,0 +1,9 @@
+{
+  "stryker-config": {
+    "test-projects": [ "./Calculator/Calculator.Tests/Calculator.Tests.csproj" ],
+    "reporters": [
+      "progress",
+      "html"
+    ]
+  }
+}
