@@ -26,8 +26,7 @@ jobs:
     - name: Build
       run: dotnet build Calculator/Calculator.sln --no-restore
     - name: Unit Test
-      run: dotnet test - name: Test
-  run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal Calculator/Calculator.sln
+      run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal Calculator/Calculator.sln
     - name: Copy Coverage to root
       run: cp Calculator/Calculator.Tests/TestResults/**/coverage.opencover.xml coverage.opencover.xml
     - name: Code Coverage Summary
