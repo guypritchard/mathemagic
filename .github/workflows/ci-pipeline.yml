@@ -26,13 +26,13 @@ jobs:
     - name: Build
       run: dotnet build Calculator/Calculator.sln --no-restore
     - name: Unit Test
-      run: dotnet test Calculator/Calculator.sln --no-build --verbosity normal --collect:"XPlat Code Coverage"
+      run: dotnet test Calculator/Calculator.sln --no-build --verbosity normal  -p:CoverletOutputFormat=opencover --collect:"XPlat Code Coverage"
     - name: Copy Coverage to root
-      run: cp Calculator/Calculator.Tests/TestResults/**/coverage.cobertura.xml coverage.cobertura.xml
+      run: cp Calculator/Calculator.Tests/TestResults/**/coverage.opencover.xml coverage.opencover.xml
     - name: Code Coverage Summary
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        filename: coverage.cobertura.xml
+        filename: coverage.opencover.xml
         fail_below_min: true
         format: markdown
         output: both
@@ -43,7 +43,7 @@ jobs:
       with:
         label: Unit Test Coverage
         color: brightgreen
-        path: coverage.cobertura.xml
+        path: coverage.opencover.xml
         gist-filename: code-coverage.json
         gist-id: 9ad2229158bd5f447dc0ad93c42ae34f
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
