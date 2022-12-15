@@ -13,7 +13,7 @@ namespace Mathemagic.Tests
         [Test]
         public void Test1()
         {
-            Assert.AreEqual(5, Operations.Add(0, 3));
+            Assert.AreEqual(5, Operations.Add(2, 3));
         }
     }
 }
