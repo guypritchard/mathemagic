@@ -1,6 +1,7 @@
 {
   "stryker-config": {
     "test-projects": ["./Mathemagic/Mathemagic.Tests/Mathemagic.Tests.csproj"],
-    "reporters": ["progress", "html"]
+    "reporters": [ "progress", "html" ],
+    "mutation-level": "Complete"
   }
 }
