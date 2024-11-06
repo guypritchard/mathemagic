@@ -51,7 +51,7 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: mutation-report.md
+        path: StrykerOutput/**/reports/mutation-report.md
 
     - name: Glob match
       uses: tj-actions/glob@v10
