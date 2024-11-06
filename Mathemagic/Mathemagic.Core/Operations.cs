@@ -7,7 +7,7 @@
             if (x < 0 || y < 0)
                 throw new ArgumentOutOfRangeException("inputs");
 
-            var result = 2 + y;
+            var result = x + 3;
             return result;
         }
 
