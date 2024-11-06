@@ -56,4 +56,4 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: steps.glob.outputs.paths[0]
+        path: "${{ steps.glob.outputs.paths[0] }}" 
