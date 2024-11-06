@@ -50,7 +50,7 @@ jobs:
       uses: tj-actions/glob@v10
       id: glob
       with:
-        files: StrykerOutput/**/reports/mutation-report.html
+        files: StrykerOutput/**/reports/mutation-report.md
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2.9.0
       if: github.event_name == 'pull_request'
