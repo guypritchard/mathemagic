@@ -54,7 +54,7 @@ jobs:
         name: mutation-report
         path: StrykerOutput
     - name: Glob match
-      uses: tj-actions/glob@710b1ab544f748fc0b17eb97123321e8dc8278c4 # v10
+      uses: tj-actions/glob@2deae40528141fc53131606d56b4e4ce2a486b29 # v22.0.2
       id: glob
       with:
         files: StrykerOutput/**/reports/mutation-report.md
