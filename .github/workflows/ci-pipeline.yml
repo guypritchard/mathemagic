@@ -10,6 +10,10 @@ on:
         required: true
         default: "warning"
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +34,7 @@ jobs:
     - name: Copy Coverage to root
       run: cp Mathemagic/Mathemagic.Tests/TestResults/**/coverage.opencover.xml coverage.opencover.xml
     - name: Create Test Coverage Badge
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
       id: create_coverage_badge
       with:
@@ -53,7 +58,7 @@ jobs:
         files: StrykerOutput/**/reports/mutation-report.md
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2.9.0
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
       with:
         recreate: true
         path: "${{ steps.glob.outputs.paths }}" 
