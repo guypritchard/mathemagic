@@ -37,7 +37,7 @@ jobs:
       run: cp Mathemagic/Mathemagic.Tests/TestResults/**/coverage.opencover.xml coverage.opencover.xml
     - name: Create Test Coverage Badge
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+      uses: simon-k/dotnet-code-coverage-badge@481191ec44286e8d401ad98797299b6226df63a6 # v1.0.0
       id: create_coverage_badge
       with:
         label: Unit Test Coverage
@@ -54,12 +54,12 @@ jobs:
         name: mutation-report
         path: StrykerOutput
     - name: Glob match
-      uses: tj-actions/glob@v10
+      uses: tj-actions/glob@710b1ab544f748fc0b17eb97123321e8dc8278c4 # v10
       id: glob
       with:
         files: StrykerOutput/**/reports/mutation-report.md
     - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2.9.0
+      uses: marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31 # v2.9.0
       if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
       with:
         recreate: true
