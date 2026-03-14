@@ -49,7 +49,7 @@ jobs:
     - name: Mutation Test
       run: dotnet stryker
     - name: Upload Mutation Report
-      uses: actions/upload-artifact@v3.0.0
+      uses: actions/upload-artifact@v7.0.0
       with:
         name: mutation-report
         path: StrykerOutput
